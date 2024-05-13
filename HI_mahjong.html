@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>場代自動計算ツール</title>
+    <link rel="stylesheet" href="HI_mahjong.css" type="text/css">
+</head>
+
+<body>
+    <h2>場代自動計算ツール</h2>
+    <dialog id="init" class="init">
+        <h2>プレイヤー名を入力</h2>
+        <input type="text" id="player1" name="player1" placeholder="Player 1"><br><br>
+        <input type="text" id="player2" name="player2" placeholder="Player 2"><br><br>
+        <input type="text" id="player3" name="player3" placeholder="Player 3"><br><br>
+        <input type="text" id="player4" name="player4" placeholder="Player 4"><br><br>
+        <p>
+            順位ウマ選択：
+            <select>
+                <option id="5-10" value="5-10">5-10（ゴットー）</option>
+                <option id="10-20" value="10-20">10-20（ワンツー）</option>
+                <option id="10-30" value="10-30">10-30（ワンスリー）</option>
+                <option id="20-30" value="20-30">20-30（ツースリー）</option>
+            </select><br>
+        </p>
+        <button onclick="closePopup()">決定</button>
+    </dialog>
+
+    <div class="area">
+        <label for="result">- 半荘結果 -</label><br>
+        <p class="p1">
+            Player 1
+            <span>
+                :
+            </span>
+            <input type="number" id="score1" placeholder="持ち点を入力"><br>
+        </p>
+        <p class="p2">
+            Player 2
+            <span>
+                :
+            </span>
+            <input type="number" id="score2" placeholder="持ち点を入力"><br>
+        </p>
+        <p class="p3">
+            Player 3
+            <span>
+                :
+            </span>
+            <input type="number" id="score3" placeholder="持ち点を入力"><br>
+        </p>
+        <p class="p4">
+            Player 4
+            <span>
+                :
+            </span>
+            <input type="number" id="score4" placeholder="持ち点を入力"><br>
+        </p>
+        <button onclick="addTable()">追加する</button>
+    </div>
+    <br>
+
+    <div class="area">
+        <label for="result">- 場代計算 -</label><br>
+        <p>
+            場代入力：
+            <input type="number" id="charge" placeholder="場代を入力"><br>
+        </p>
+        <button onclick="calculate()">計算する</button>
+    </div>
+    <br>
+
+    <div class="area">
+        <label for="result">- 結果 -</label>
+        <p>
+            <span>
+                2着:
+            </span>
+            <span id="resultName2"></span>
+            <input type="text" id="result2" readonly><br>
+        </p>
+        <p>
+            <span>
+                3着:
+            </span>
+            <span id="resultName3"></span>
+            <input type="text" id="result3" readonly><br>
+        </p>
+        <p>
+            <span>
+                4着:
+            </span>
+            <span id="resultName4"></span>
+            <input type="text" id="result4" readonly><br>
+        </p>
+    </div>
+    <br><br>
+
+    <div class="area">
+        <label for="result">- 点数表 -</label>
+        <table id="table" border="1">
+            <tr>
+                <th>半荘</th>
+                <th class="p1">Player 1</th>
+                <th class="p2">Player 2</th>
+                <th class="p3">Player 3</th>
+                <th class="p4">Player 4</th>
+            </tr>
+            <tr>
+                <td>合計</td>
+                <td id="total1">
+                    <div>0</div>
+                    <div>(0)</div>
+                </td>
+                <td id="total2">
+                    <div>0</div>
+                    <div>(0)</div>
+                </td>
+                <td id="total3">
+                    <div>0</div>
+                    <div>(0)</div>
+                </td>
+                <td id="total4">
+                    <div>0</div>
+                    <div>(0)</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="HI_mahjong.js"></script>
+</body>
+
+</html>

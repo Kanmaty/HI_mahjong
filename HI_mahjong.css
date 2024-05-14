@@ -21,6 +21,12 @@ table tr td:not(:first-child) {
     width: calc((100% - 24%) / 4);
 }
 
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .a-link {
     text-align: right;
 }

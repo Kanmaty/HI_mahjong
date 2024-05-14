@@ -129,10 +129,23 @@
             </tr>
         </table>
     </div><br>
+    <script src="HI_mahjong.js"></script>
+</body>
+
+<footer>
+    <p>&copy; kota kanmachi</p>
     <div class="a-link">
         <a href="HI_mahjong_3ma.html" id="link">3麻用ページ</a>
     </div>
-    <script src="HI_mahjong.js"></script>
-</body>
+    <script>
+        document.getElementById('link').addEventListener('click', function (event) {
+            event.preventDefault();
+            const userConfirmed = confirm('3麻用のページに遷移しますか？');
+            if (userConfirmed) {
+                window.location.href = this.href;
+            }
+        });
+    </script>
+</footer>
 
 </html>

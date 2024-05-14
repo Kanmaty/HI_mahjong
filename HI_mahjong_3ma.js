@@ -127,11 +127,3 @@ function updateScore() {
         sumRow.children[i].children[1].textContent = `(${scores[i - 1].calcScore})`;
     }
 }
-
-document.getElementById('link').addEventListener('click', function(event) {
-    event.preventDefault();
-    const userConfirmed = confirm('4麻用のページに遷移しますか？');
-    if (userConfirmed) {
-        window.location.href = this.href;
-    }
-});

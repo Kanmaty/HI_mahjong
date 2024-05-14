@@ -21,6 +21,10 @@ table tr td:not(:first-child) {
     width: calc((100% - 24%) / 4);
 }
 
+.a-link {
+    text-align: right;
+}
+
 
 .area {
     border: 1px solid black;

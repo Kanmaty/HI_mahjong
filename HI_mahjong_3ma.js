@@ -14,11 +14,6 @@ let scores = [
         name: "player3",
         score: 0,
         calcScore: 0
-    },
-    {
-        name: "player4",
-        score: 0,
-        calcScore: 0
     }
 ]
 let uma1, uma2;
@@ -49,7 +44,7 @@ function closePopup() {
     if (backdrop) {
         backdrop.parentNode.removeChild(backdrop);
     }
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 3; i++) {
         updatePlayerText(i);
     }
     const selectElement = document.querySelector('select');
@@ -64,50 +59,43 @@ function calculate() {
         return;
     }
     let sortedScores = scores.slice().sort((a, b) => b.calcScore - a.calcScore);
-    let [firstMaxIndex, secondMaxIndex, thirdMaxIndex, fourthMaxIndex] = sortedScores.map(score => scores.indexOf(score));
+    let [firstMaxIndex, secondMaxIndex, thirdMaxIndex] = sortedScores.map(score => scores.indexOf(score));
     const num12 = scores[firstMaxIndex].calcScore - scores[secondMaxIndex].calcScore;
     const num13 = scores[firstMaxIndex].calcScore - scores[thirdMaxIndex].calcScore;
-    const num14 = scores[firstMaxIndex].calcScore - scores[fourthMaxIndex].calcScore;
-    const sum = num12 + num13 + num14;
+    const sum = num12 + num13;
     document.getElementById('result2').value = Math.round(charge * (num12 / sum));
     document.getElementById('result3').value = Math.round(charge * (num13 / sum));
-    document.getElementById('result4').value = Math.round(charge * (num14 / sum));
     document.getElementById("resultName2").textContent = scores[secondMaxIndex].name;
     document.getElementById("resultName3").textContent = scores[thirdMaxIndex].name;
-    document.getElementById("resultName4").textContent = scores[fourthMaxIndex].name;
 }
 
 function addTable() {
-    if (!document.getElementById("score1").value || !document.getElementById("score2").value || !document.getElementById("score3").value || !document.getElementById("score4").value) {
+    if (!document.getElementById("score1").value || !document.getElementById("score2").value || !document.getElementById("score3").value) {
         alert("スコアを全員分入力してください");
         return;
     }
     const table = document.getElementById('table');
     const lastRow = table.rows[table.rows.length - 1];
     const tr = document.createElement('tr');
-    let score = [0, 0, 0, 0];
-    for (let i = 1; i < 5; i++) {
+    let score = [0, 0, 0];
+    for (let i = 1; i < 4; i++) {
         score[i - 1] = parseInt(document.getElementById(`score${i}`).value);
         scores[i - 1].score += score[i - 1];
     }
-    let calcScore = [0, 0, 0, 0];
+    let calcScore = [0, 0, 0];
     let temp = [...score];
     const firstMaxIndex = temp.indexOf(Math.max(...temp));
     temp[firstMaxIndex] = -1000000;
     const secondMaxIndex = temp.indexOf(Math.max(...temp));
     temp[secondMaxIndex] = -1000000;
     const thirdMaxIndex = temp.indexOf(Math.max(...temp));
-    temp[thirdMaxIndex] = -1000000;
-    const fourthMaxIndex = temp.indexOf(Math.max(...temp));
-    calcScore[fourthMaxIndex] = Math.round((score[fourthMaxIndex] - uma2) / 1000) - 30;
-    calcScore[thirdMaxIndex] = Math.round((score[thirdMaxIndex] - uma1) / 1000) - 30;
-    calcScore[secondMaxIndex] = Math.round((score[secondMaxIndex] + uma1) / 1000) - 30;
-    calcScore[firstMaxIndex] = -calcScore[fourthMaxIndex] - calcScore[thirdMaxIndex] - calcScore[secondMaxIndex];
+    calcScore[thirdMaxIndex] = Math.round((score[thirdMaxIndex] - uma2) / 1000) - 40;
+    calcScore[secondMaxIndex] = Math.round((score[secondMaxIndex] - uma1) / 1000) - 40;
+    calcScore[firstMaxIndex] = - calcScore[thirdMaxIndex] - calcScore[secondMaxIndex];
     scores[firstMaxIndex].calcScore += calcScore[firstMaxIndex];
     scores[secondMaxIndex].calcScore += calcScore[secondMaxIndex];
     scores[thirdMaxIndex].calcScore += calcScore[thirdMaxIndex];
-    scores[fourthMaxIndex].calcScore += calcScore[fourthMaxIndex];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
         const td = document.createElement('td');
         if (document.getElementById(`score${i}`)) {
             td.innerHTML = `<div>${score[i - 1]}</div><div>(${calcScore[i - 1]})</div>`;
@@ -123,7 +111,7 @@ function addTable() {
 
 function deleteRow(button) {
     const tr = button.parentNode.parentNode;
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i < 4; i++) {
         scores[i - 1].score += -parseInt(tr.children[i].textContent);
         scores[i - 1].calcScore += -parseInt(tr.children[i].textContent.split("(")[1].split(")")[0]);
     }
@@ -134,7 +122,7 @@ function deleteRow(button) {
 function updateScore() {
     const table = document.getElementById('table');
     const sumRow = table.rows[table.rows.length - 1];
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i < 4; i++) {
         sumRow.children[i].children[0].textContent = scores[i - 1].score;
         sumRow.children[i].children[1].textContent = `(${scores[i - 1].calcScore})`;
     }
@@ -142,7 +130,7 @@ function updateScore() {
 
 document.getElementById('link').addEventListener('click', function(event) {
     event.preventDefault();
-    const userConfirmed = confirm('3麻用のページに遷移しますか？');
+    const userConfirmed = confirm('4麻用のページに遷移しますか？');
     if (userConfirmed) {
         window.location.href = this.href;
     }

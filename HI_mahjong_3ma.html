@@ -15,7 +15,6 @@
         <input type="text" id="player1" name="player1" placeholder="Player 1"><br><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br><br>
         <input type="text" id="player3" name="player3" placeholder="Player 3"><br><br>
-        <input type="text" id="player4" name="player4" placeholder="Player 4"><br><br>
         <p>
             順位ウマ選択：
             <select>
@@ -51,13 +50,6 @@
             </span>
             <input type="number" id="score3" placeholder="持ち点を入力"><br>
         </p>
-        <p class="p4">
-            Player 4
-            <span>
-                :
-            </span>
-            <input type="number" id="score4" placeholder="持ち点を入力"><br>
-        </p>
         <button onclick="addTable()">追加する</button>
     </div>
     <br>
@@ -88,13 +80,6 @@
             <span id="resultName3"></span>
             <input type="text" id="result3" readonly><br>
         </p>
-        <p>
-            <span>
-                4着:
-            </span>
-            <span id="resultName4"></span>
-            <input type="text" id="result4" readonly><br>
-        </p>
     </div>
     <br><br>
 
@@ -106,7 +91,6 @@
                 <th class="p1">Player 1</th>
                 <th class="p2">Player 2</th>
                 <th class="p3">Player 3</th>
-                <th class="p4">Player 4</th>
             </tr>
             <tr>
                 <td>合計</td>
@@ -122,17 +106,13 @@
                     <div>0</div>
                     <div>(0)</div>
                 </td>
-                <td id="total4">
-                    <div>0</div>
-                    <div>(0)</div>
-                </td>
             </tr>
         </table>
     </div><br>
     <div class="a-link">
-        <a href="HI_mahjong_3ma.html" id="link">3麻用ページ</a>
+        <a href="HI_mahjong.html" id="link">4麻用ページ</a>
     </div>
-    <script src="HI_mahjong.js"></script>
+    <script src="HI_mahjong_3ma.js"></script>
 </body>
 
 </html>

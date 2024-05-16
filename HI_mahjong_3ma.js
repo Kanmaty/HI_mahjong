@@ -2,17 +2,14 @@ let counter = 1;
 let scores = [
     {
         name: "player1",
-        score: 0,
         calcScore: 0
     },
     {
         name: "player2",
-        score: 0,
         calcScore: 0
     },
     {
         name: "player3",
-        score: 0,
         calcScore: 0
     }
 ]
@@ -80,7 +77,6 @@ function addTable() {
     let score = [0, 0, 0];
     for (let i = 1; i < 4; i++) {
         score[i - 1] = parseInt(document.getElementById(`score${i}`).value);
-        scores[i - 1].score += score[i - 1];
     }
     let calcScore = [0, 0, 0];
     let temp = [...score];
@@ -98,7 +94,7 @@ function addTable() {
     for (let i = 0; i < 4; i++) {
         const td = document.createElement('td');
         if (document.getElementById(`score${i}`)) {
-            td.innerHTML = `<div>${score[i - 1]}</div><div>(${calcScore[i - 1]})</div>`;
+            td.innerHTML = `<div>${calcScore[i - 1]}</div><div>(${score[i - 1]})</div>`;
         } else {
             td.innerHTML = `${counter}半荘目 <button onclick="deleteRow(this)">削除</button>`;
             counter++;
@@ -112,8 +108,7 @@ function addTable() {
 function deleteRow(button) {
     const tr = button.parentNode.parentNode;
     for (let i = 1; i < 4; i++) {
-        scores[i - 1].score += -parseInt(tr.children[i].textContent);
-        scores[i - 1].calcScore += -parseInt(tr.children[i].textContent.split("(")[1].split(")")[0]);
+        scores[i - 1].calcScore += -parseInt(tr.children[i].textContent);
     }
     updateScore();
     tr.parentNode.removeChild(tr);
@@ -123,7 +118,6 @@ function updateScore() {
     const table = document.getElementById('table');
     const sumRow = table.rows[table.rows.length - 1];
     for (let i = 1; i < 4; i++) {
-        sumRow.children[i].children[0].textContent = scores[i - 1].score;
-        sumRow.children[i].children[1].textContent = `(${scores[i - 1].calcScore})`;
+        sumRow.children[i].textContent = scores[i - 1].calcScore;
     }
 }
